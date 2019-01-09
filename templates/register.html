@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+{% if current_user.is_authenticated %}
+
+         <!-- grid 1 -->
+         <div class="col-sm-12">
+           <p>Please logout first.</p>
+         </div>
+
+
+{% else %}
+        <div id="signupbox" style="margin-top:50px" class="mainbox col-sm-6 col-sm-offset-3 col-sm-8 col-sm-offset-2">
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Register</div>
+                        </div>  
+                        <div class="panel-body" >
+                            <div style="padding-top:15px" class="panel-body" >
+                            {% if error %}
+                              <div style="" id="register-alert" class="alert alert-danger col-sm-12">{{ error }}</div>
+                            {% endif %}
+                                              
+                            <form method="POST" action="/register" id="signupform" class="form-horizontal" role="form">
+                                {{ form.hidden_tag() }}
+
+                                <div class="form-group">
+                                  <label for="registerInputEmail">Email address</label>
+                                  {{ form.email( class="form-control", id="registerInputEmail", placeholder="Enter Email Address, max 50 characters", required="required", size=20, maxlength=50) }}
+                                  <small id="emailHelp" class="form-text text-muted">Maximum Email Address length is 50 characters.</small>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="registerInputPwd">Password</label>
+                                      {{ form.password( class="form-control", id="registerInputPwd", placeholder="Password", required="required", size=20, minlength=8, maxlength=50) }}
+                                  <small id="passwordHelp" class="form-text text-muted">Password length must be between 8 and 50 characters.</small>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label for="registerInputPwdConfirm">Confirm Password</label>
+                                      {{ form.confirmpassword( class="form-control", id="registerInputPwdConfirm", placeholder="Retype Password", required="required", size=20, minlength=8, maxlength=50) }}
+                                  <small id="passwordHelp" class="form-text text-muted">Password length must be between 8 and 50 characters.</small>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+
+                                {% if recaptcha_enabled %}
+                                <p>
+                                  {{ form.recaptcha }}
+                                <p>
+                                {% endif %}
+
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-sm-offset-3 col-sm-9">
+                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i>Register</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-12 control">
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                            Already have an account?
+                                        <a href="/login">
+                                            Login Here
+                                        </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                         </div>
+                    </div>
+               </div>
+          </div>
+{% endif %}
+{% endblock %}

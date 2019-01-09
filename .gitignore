@@ -1,0 +1,8 @@
+# supervisor
+supervisord.log
+supervisord.pid
+
+# Python
+*.pyc
+*.zip
+venv

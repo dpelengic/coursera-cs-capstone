@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block content %}
+{% if current_user.is_authenticated %}
+
+         <!-- grid 1 -->
+         <div class="col-sm-12">
+           <h1 class="text-center">Welcome {{ current_user.email }} !</h1>
+         </div>
+       
+         <!-- grid 2 -->
+         <div class="col-sm-12">
+           <div class="text-center">
+             <div class="well">Use the top Navigation bar to <b>Logout</b>, access messaging functionality in <b>Inbox</b> or check out <b>DBdump</b> where database dump is available.
+             <br /> Clicking on <b>Home</b> will always bring you right to this page !
+             </div>
+         </div>
+
+         </div>
+
+         <!-- grid 3 -->
+         <div id="flashmsg" class="col-sm-12">
+           {% with messages = get_flashed_messages() %}
+             {% if messages %}
+               {% for message in messages %}
+                 <div class="alert alert-success" role="alert">{{ message }}</div>
+               {% endfor %}
+             {% endif %}
+           {% endwith %}
+         </div>
+
+{% else %}
+         <!-- grid 1 -->
+         <div class="col-sm-12">
+           <h1 class="text-center">Welcome !</h1>
+         </div>
+
+         <!-- grid 2 -->
+         <div class="col-sm-12">
+           <div class="text-center">
+             <div class="well">Use the top Navigation bar to <b>Register</b>, <b>Login</b> or check out <b>DBdump</b> where database dump is available.
+             <br /> Clicking on <b>Home</b> will always bring you right to this page !
+             </div>
+         </div>
+         </div>
+         </div>
+
+         <!-- grid 3 -->
+         <div id="flashmsg" class="col-sm-12">
+           {% with messages = get_flashed_messages() %}
+             {% if messages %}
+               {% for message in messages %}
+                 <div class="alert alert-success" role="alert">{{ message }}</div>
+               {% endfor %}
+             {% endif %}
+           {% endwith %}
+         </div>
+
+{% endif %}
+{% endblock %}
